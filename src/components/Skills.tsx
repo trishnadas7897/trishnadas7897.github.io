@@ -1,79 +1,81 @@
+import { motion } from "framer-motion";
+import { skills } from "@/data/profile";
+import {
+  Code2,
+  Server,
+  Cloud,
+  Database,
+  Sparkles,
+  LineChart,
+} from "lucide-react";
 
-import React from 'react';
-import { Code, Server, Cloud, Brain, Database, Wrench } from 'lucide-react';
+const iconFor = (cat: string) => {
+  if (cat === "Languages") return Code2;
+  if (cat === "Frameworks") return Server;
+  if (cat === "Cloud & DevOps") return Cloud;
+  if (cat === "Databases") return Database;
+  if (cat === "AI / ML") return Sparkles;
+  if (cat === "Analytics & BI") return LineChart;
+  return Code2;
+};
 
-const Skills = () => {
-  const skillCategories = [
-    {
-      icon: <Code className="text-teal-400" size={24} />,
-      title: "Programming Languages",
-      skills: ["Python", "C++", "Java", "JavaScript", "SQL", "Dart"]
-    },
-    {
-      icon: <Server className="text-teal-400" size={24} />,
-      title: "Frameworks & Technologies",
-      skills: ["Django", "FastAPI", "React.js", "Flask", "Flutter"]
-    },
-    {
-      icon: <Cloud className="text-teal-400" size={24} />,
-      title: "Cloud & DevOps",
-      skills: ["Kubernetes", "AWS", "Docker", "CI/CD Pipelines", "Jenkins", "Datadog", "Grafana"]
-    },
-    {
-      icon: <Brain className="text-teal-400" size={24} />,
-      title: "AI & Machine Learning",
-      skills: ["PyTorch", "TensorFlow", "NLP", "Deep Learning", "Computer Vision"]
-    },
-    {
-      icon: <Database className="text-teal-400" size={24} />,
-      title: "Database & Tools",
-      skills: ["MySQL", "SQLite", "MongoDB", "SQLAlchemy", "Git", "Linux (Ubuntu)"]
-    },
-    {
-      icon: <Wrench className="text-teal-400" size={24} />,
-      title: "Specializations",
-      skills: ["IoT", "Data Visualization", "PID/LQR Control", "Cloud Infrastructure", "DBMS"]
-    }
-  ];
-
+export default function Skills() {
   return (
-    <section id="skills" className="py-20 bg-black">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-white mb-4">Technical Skills</h2>
-          <div className="w-20 h-1 bg-teal-400 mx-auto mb-4"></div>
-          <p className="text-gray-300 text-lg max-w-2xl mx-auto">
-            A comprehensive toolkit of modern technologies and frameworks that I use to build innovative solutions
+    <section id="skills" className="section">
+      <div className="section-inner">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="mb-14 max-w-3xl"
+        >
+          <div className="eyebrow">04 - Stack</div>
+          <h2 className="section-title">
+            Tools <span className="text-gradient-gold">I reach for first</span>.
+          </h2>
+          <p className="mt-5 text-base text-foreground/65 md:text-lg">
+            Grouped by where they show up in production - not by what's trendy.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {skillCategories.map((category, index) => (
-            <div 
-              key={index}
-              className="bg-gray-900 p-6 rounded-lg border border-gray-700 hover:border-teal-400/50 transition-all duration-300 hover:transform hover:scale-105"
-            >
-              <div className="flex items-center space-x-3 mb-4">
-                {category.icon}
-                <h3 className="text-xl font-semibold text-white">{category.title}</h3>
-              </div>
-              
-              <div className="flex flex-wrap gap-2">
-                {category.skills.map((skill, skillIndex) => (
-                  <span
-                    key={skillIndex}
-                    className="px-3 py-1 bg-teal-500/20 text-teal-300 text-sm rounded-full border border-teal-500/30 hover:bg-teal-500/30 transition-colors duration-200"
-                  >
-                    {skill}
+        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {skills.map((g, i) => {
+            const Icon = iconFor(g.category);
+            return (
+              <motion.div
+                key={g.category}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{
+                  duration: 0.6,
+                  delay: i * 0.05,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
+                whileHover={{ y: -3 }}
+                className="glass p-6"
+              >
+                <div className="flex items-center gap-3">
+                  <span className="grid h-10 w-10 place-items-center rounded-xl border border-gold/30 bg-gold/[0.06] text-gold">
+                    <Icon size={18} strokeWidth={1.6} />
                   </span>
-                ))}
-              </div>
-            </div>
-          ))}
+                  <h3 className="font-display text-base font-semibold tracking-tight text-foreground">
+                    {g.category}
+                  </h3>
+                </div>
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {g.items.map((s) => (
+                    <span key={s} className="chip">
+                      {s}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>
   );
-};
-
-export default Skills;
+}

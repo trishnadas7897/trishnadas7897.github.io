@@ -1,74 +1,75 @@
+import { motion } from "framer-motion";
+import { profile, education } from "@/data/profile";
 
-import React from 'react';
-import { GraduationCap, MapPin } from 'lucide-react';
+const reveal = {
+  initial: { opacity: 0, y: 24 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: "-80px" },
+  transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] },
+};
 
-const About = () => {
+export default function About() {
   return (
-    <section id="about" className="py-20 bg-gray-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-white mb-4">About Me</h2>
-          <div className="w-20 h-1 bg-teal-400 mx-auto"></div>
-        </div>
+    <section id="about" className="section">
+      <div className="section-inner grid gap-16 lg:grid-cols-12">
+        <motion.div {...reveal} className="lg:col-span-5">
+          <div className="eyebrow">01 - About</div>
+          <h2 className="section-title">
+            Engineer who ships across the stack.
+          </h2>
+          <p className="mt-6 text-base leading-relaxed text-foreground/70 md:text-lg">
+            From a J.P. Morgan trading desk in Mumbai to leading an eight-person team
+            on a live food-delivery + ride-hailing stack at OPM, I write code where the
+            stakes are high - production, regulated, or both. My work sits where
+            backend reliability, AI integration, and product instinct overlap.
+          </p>
+          <p className="mt-4 text-base leading-relaxed text-foreground/60">
+            I'm a B.Tech CSE undergrad at VSSUT, runner-up at J.P. Morgan Code for Good 2025
+            (top 6 nationally), and the kind of engineer who'd rather ship the boring
+            reliable thing than the impressive fragile one.
+          </p>
+        </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="space-y-6">
-            <div className="flex items-center space-x-3 text-gray-300">
-              <MapPin className="text-teal-400" size={20} />
-              <span>Bhubaneswar, India</span>
-            </div>
-            
-            <div className="space-y-4 text-gray-300 leading-relaxed">
-              <p>
-               I’m Trishna Das , who thrives at the intersection of engineering and innovation. I enjoy building systems that not only work — but make sense. Whether it’s designing logic, automating tasks, or improving reliability, I focus on delivering solutions that are functional, scalable, and impactful.
-
-
-              </p>
-              
-              <p>
-                My internship experiences across industries — from finance (WNS) and healthcare (Inovaare) to enterprise CRM (Codecis AI) — have taught me how to work on real-world problems in fast-paced environments. These roles strengthened my ability to think critically, build with purpose, and navigate production-grade codebases with confidence.
-              </p>
-              
-              <p>
-               I’ve taken on complex challenges in national hackathons, where I’ve led teams, built end-to-end platforms under pressure, and pitched to real stakeholders. What excites me most is using technology to improve systems, simplify processes, and create value — and I’m always looking for teams that share that mindset.
-
-Outside of development, I’m someone who enjoys focused learning, sharp discussions, and a clean workspace (with way too many sticky notes).
-              </p>
-            </div>
+        {/* Metrics rail */}
+        <motion.div {...reveal} className="lg:col-span-7">
+          <div className="grid grid-cols-2 gap-4 md:grid-cols-2">
+            {profile.metrics.map((m) => (
+              <motion.div
+                key={m.label}
+                whileHover={{ y: -3 }}
+                className="glass p-6"
+              >
+                <div className="font-display text-4xl font-semibold tracking-tighter text-gradient-gold md:text-5xl">
+                  {m.value}
+                </div>
+                <p className="mt-2 text-sm text-foreground/55">{m.label}</p>
+              </motion.div>
+            ))}
           </div>
 
-          <div className="space-y-6">
-            <div className="bg-black p-6 rounded-lg border border-gray-700">
-              <div className="flex items-center space-x-3 mb-4">
-                <GraduationCap className="text-teal-400" size={24} />
-                <h3 className="text-xl font-semibold text-white">Education</h3>
-              </div>
-              
-              <div className="space-y-4">
-                <div>
-                  <h4 className="font-semibold text-teal-400">B.Tech, Computer Science & Engineering</h4>
-                  <p className="text-gray-300">Veer Surendra Sai University Of Technology (VSSUT), Burla</p>
-                  <p className="text-sm text-gray-400">CGPA: 8.87/10</p>
-                </div>
-                
-                <div>
-                  <h4 className="font-semibold text-teal-400">Senior Secondary (XII)</h4>
-                  <p className="text-gray-300">Delhi Public School Ruby Park (CBSE Board), Kolkata</p>
-                  <p className="text-sm text-gray-400">Percentage: 93.60%</p>
-                </div>
-                
-                <div>
-                  <h4 className="font-semibold text-teal-400">Secondary (X)</h4>
-                  <p className="text-gray-300">Mahadevi Birla Shishu Vihar (ICSE Board), Kolkata</p>
-                  <p className="text-sm text-gray-400">Percentage: 95.10%</p>
-                </div>
-              </div>
-            </div>
+          {/* Education stack */}
+          <div className="mt-8 glass p-6">
+            <h3 className="font-mono text-[11px] uppercase tracking-[0.22em] text-gold">
+              Education
+            </h3>
+            <ul className="mt-5 space-y-5">
+              {education.map((ed) => (
+                <li key={ed.school} className="grid gap-1 md:grid-cols-[1fr_auto] md:items-baseline">
+                  <div>
+                    <p className="font-medium text-foreground">{ed.school}</p>
+                    <p className="text-sm text-foreground/55">
+                      {ed.degree} <span className="mx-2 text-foreground/20">·</span> {ed.grade}
+                    </p>
+                  </div>
+                  <p className="font-mono text-xs uppercase tracking-wider text-foreground/40">
+                    {ed.period}
+                  </p>
+                </li>
+              ))}
+            </ul>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
-};
-
-export default About;
+}

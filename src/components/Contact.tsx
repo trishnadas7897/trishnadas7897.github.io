@@ -1,158 +1,113 @@
+import { motion } from "framer-motion";
+import { profile } from "@/data/profile";
+import { Mail, MapPin, Linkedin, Github, ArrowUpRight } from "lucide-react";
 
-import React from 'react';
-import { Mail, Phone, MapPin, Linkedin, Github, ExternalLink, Code } from 'lucide-react';
+const channels = [
+  {
+    icon: Mail,
+    label: "Email",
+    value: profile.email,
+    href: `mailto:${profile.email}`,
+  },
+  {
+    icon: Linkedin,
+    label: "LinkedIn",
+    value: "linkedin.com/in/trishnadas7897",
+    href: profile.links.linkedin,
+    external: true,
+  },
+  {
+    icon: Github,
+    label: "GitHub",
+    value: "github.com/trishnadas7897",
+    href: profile.links.github,
+    external: true,
+  },
+  {
+    icon: MapPin,
+    label: "Based in",
+    value: profile.location,
+  },
+] as const;
 
-const Contact = () => {
-  const contactInfo = [
-    {
-      icon: <Mail className="text-teal-400" size={20} />,
-      label: "Email (Primary)",
-      value: "trishnadas7897@gmail.com",
-      href: "mailto:trishnadas7897@gmail.com"
-    },
-    {
-      icon: <Mail className="text-teal-400" size={20} />,
-      label: "Email (Outlook)",
-      value: "trishnadas2021@outlook.com",
-      href: "mailto:trishnadas2021@outlook.com"
-    },
-    {
-      icon: <Phone className="text-teal-400" size={20} />,
-      label: "Phone",
-      value: "+91 7439523511",
-      href: "tel:+917439523511"
-    },
-    {
-      icon: <MapPin className="text-teal-400" size={20} />,
-      label: "Location",
-      value: "Bhubaneswar, India",
-      href: null
-    },
-    {
-      icon: <Linkedin className="text-teal-400" size={20} />,
-      label: "LinkedIn",
-      value: "linkedin.com/in/trishnadas7897",
-      href: "https://linkedin.com/in/trishnadas7897"
-    },
-    {
-      icon: <Github className="text-teal-400" size={20} />,
-      label: "GitHub",
-      value: "github.com/Trishna2005Das",
-      href: "https://github.com/Trishna2005Das"
-    },
-    {
-      icon: <Code className="text-teal-400" size={20} />,
-      label: "LeetCode",
-      value: "leetcode.com/u/trishnadas2005",
-      href: "https://leetcode.com/u/trishnadas2005/"
-    }
-  ];
-
+export default function Contact() {
   return (
-    <section id="contact" className="py-20 bg-gradient-to-br from-gray-900 via-black to-gray-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-white mb-4">Get In Touch</h2>
-          <div className="w-20 h-1 bg-teal-400 mx-auto mb-4"></div>
-          <p className="text-gray-300 text-lg max-w-2xl mx-auto">
-            Let's connect and discuss opportunities, collaborations, or just have a chat about technology!
-          </p>
-        </div>
+    <section id="contact" className="section">
+      <div className="section-inner">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="glass relative overflow-hidden p-10 md:p-16"
+        >
+          {/* Decorative grid */}
+          <div className="pointer-events-none absolute inset-0 grid-overlay opacity-40" />
 
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="space-y-8">
+          <div className="relative grid items-end gap-10 lg:grid-cols-[1.2fr_1fr]">
             <div>
-              <h3 className="text-2xl font-bold text-white mb-6">Let's Connect</h3>
-              <p className="text-gray-300 leading-relaxed mb-6">
-                I'm always open to discussing new opportunities, interesting projects, 
-                or potential collaborations. Whether you're looking for a developer, 
-                want to discuss a project idea, or just want to connect, feel free to reach out!
+              <div className="eyebrow">06 - Contact</div>
+              <h2 className="font-display text-4xl font-semibold tracking-tightest text-foreground md:text-6xl">
+                Let's build <span className="text-gradient-gold">something serious</span>.
+              </h2>
+              <p className="mt-5 max-w-xl text-base text-foreground/65 md:text-lg">
+                Open to full-time roles in 2027, summer 2026 collaborations, and
+                interesting side projects in AI systems / fintech / regulated
+                infrastructure. Always replying within a day.
               </p>
+
+              <motion.a
+                whileHover={{ y: -1 }}
+                href={`mailto:${profile.email}`}
+                className="mt-8 inline-flex items-center gap-2 rounded-full bg-gold px-6 py-3 text-sm font-semibold tracking-tight text-navy-950 shadow-[0_10px_36px_rgba(201,169,110,0.3)]"
+              >
+                {profile.email}
+                <ArrowUpRight size={16} />
+              </motion.a>
             </div>
 
-            <div className="space-y-4">
-              {contactInfo.map((info, index) => (
-                <div key={index} className="flex items-center space-x-4 p-4 bg-black rounded-lg border border-gray-700 hover:border-teal-400/50 transition-colors duration-200">
-                  {info.icon}
-                  <div className="flex-1">
-                    <p className="text-sm text-gray-400 uppercase tracking-wide">{info.label}</p>
-                    {info.href ? (
-                      <a 
-                        href={info.href}
-                        className="text-white hover:text-teal-400 transition-colors duration-200 flex items-center space-x-1"
-                        target={info.href.startsWith('http') ? '_blank' : '_self'}
-                        rel={info.href.startsWith('http') ? 'noopener noreferrer' : ''}
+            <ul className="space-y-3">
+              {channels.map(({ icon: Icon, label, value, href, external }) => {
+                const inner = (
+                  <span className="flex items-center justify-between gap-4 rounded-2xl border border-white/[0.06] bg-white/[0.02] px-5 py-4 transition-colors hover:border-gold/30 hover:bg-white/[0.04]">
+                    <span className="flex items-center gap-4">
+                      <span className="grid h-9 w-9 place-items-center rounded-xl border border-gold/30 bg-gold/[0.06] text-gold">
+                        <Icon size={16} strokeWidth={1.6} />
+                      </span>
+                      <span>
+                        <span className="block font-mono text-[10px] uppercase tracking-widest text-foreground/40">
+                          {label}
+                        </span>
+                        <span className="block text-sm text-foreground/85">
+                          {value}
+                        </span>
+                      </span>
+                    </span>
+                    {href && (
+                      <ArrowUpRight size={16} className="text-foreground/40" />
+                    )}
+                  </span>
+                );
+                return (
+                  <li key={label}>
+                    {href ? (
+                      <a
+                        href={href}
+                        target={external ? "_blank" : undefined}
+                        rel={external ? "noopener" : undefined}
                       >
-                        <span>{info.value}</span>
-                        {info.href.startsWith('http') && <ExternalLink size={14} />}
+                        {inner}
                       </a>
                     ) : (
-                      <p className="text-white">{info.value}</p>
+                      inner
                     )}
-                  </div>
-                </div>
-              ))}
-            </div>
+                  </li>
+                );
+              })}
+            </ul>
           </div>
-
-          <div className="bg-black p-8 rounded-lg border border-gray-700">
-            <div className="text-center space-y-6">
-              <div className="mx-auto">
-                <img 
-                    src="/profile-image/trish.png" 
-                  alt="Trishna Das Profile Photo" 
-    className="rounded-full object-cover border-4 border-teal-400/30 hover:border-teal-400 transition duration-300 mx-auto"
-        style={{ width: '250px', height: '250px', aspectRatio: '1 / 1', objectPosition: 'center' }}
-                />
-              </div>
-              
-              <div>
-                <h3 className="text-2xl font-bold text-white mb-2">Trishna Das</h3>
-                <p className="text-teal-400 font-medium mb-4">Full Stack Developer & AI Engineer</p>
-                <p className="text-gray-300 text-sm leading-relaxed">
-                  "Building innovative solutions with code, one project at a time. 
-                  Let's create something amazing together!"
-                </p>
-              </div>
-
-              <div className="flex justify-center space-x-4">
-                <a
-                  href="https://linkedin.com/in/trishnadas7897"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-3 bg-teal-500/20 text-teal-400 rounded-lg hover:bg-teal-500/30 transition-colors duration-200"
-                >
-                  <Linkedin size={20} />
-                </a>
-                <a
-                  href="https://github.com/Trishna2005Das"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-3 bg-teal-500/20 text-teal-400 rounded-lg hover:bg-teal-500/30 transition-colors duration-200"
-                >
-                  <Github size={20} />
-                </a>
-                <a
-                  href="https://leetcode.com/u/trishnadas2005/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-3 bg-teal-500/20 text-teal-400 rounded-lg hover:bg-teal-500/30 transition-colors duration-200"
-                >
-                  <Code size={20} />
-                </a>
-                <a
-                  href="mailto:trishnadas7897@gmail.com"
-                  className="p-3 bg-teal-500/20 text-teal-400 rounded-lg hover:bg-teal-500/30 transition-colors duration-200"
-                >
-                  <Mail size={20} />
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
-};
-
-export default Contact;
+}
