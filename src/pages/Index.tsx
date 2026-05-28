@@ -1,27 +1,27 @@
+import Header from "@/components/Header";
+import Hero from "@/components/Hero";
+import About from "@/components/About";
+import Experience from "@/components/Experience";
+import Projects from "@/components/Projects";
+import Skills from "@/components/Skills";
+import Achievements from "@/components/Achievements";
+import Contact from "@/components/Contact";
+import Footer from "@/components/Footer";
 
-import React from 'react';
-import Header from '../components/Header';
-import Hero from '../components/Hero';
-import About from '../components/About';
-import Skills from '../components/Skills';
-import Projects from '../components/Projects';
-import Experience from '../components/Experience';
-import Contact from '../components/Contact';
-import Footer from '../components/Footer';
-
-const Index = () => {
+export default function Index() {
   return (
-    <div className="min-h-screen bg-black">
+    <div className="relative min-h-screen overflow-x-hidden bg-background text-foreground">
       <Header />
-      <Hero />
-      <About />
-      <Skills />
-      <Projects />
-      <Experience />
-      <Contact />
+      <main>
+        <Hero />
+        <About />
+        <Experience />
+        <Projects />
+        <Skills />
+        <Achievements />
+        <Contact />
+      </main>
       <Footer />
     </div>
   );
-};
-
-export default Index;
+}

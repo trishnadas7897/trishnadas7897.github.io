@@ -1,26 +1,61 @@
+import { profile } from "@/data/profile";
 
-import React from 'react';
-import { Heart, Code } from 'lucide-react';
-
-const Footer = () => {
+export default function Footer() {
+  const year = new Date().getFullYear();
   return (
-    <footer className="bg-black border-t border-gray-800 py-8">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-          <div className="text-gray-400 text-sm flex items-center space-x-2">
-            <Code size={16} />
-            <span>Made with</span>
-            <Heart className="text-red-500" size={16} />
-            <span>by Trishna Das</span>
-          </div>
-          
-          <div className="text-gray-400 text-sm">
-            © 2025 Trishna Das. All rights reserved.
+    <footer className="border-t border-white/[0.06] px-6 py-12 lg:px-12">
+      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 md:flex-row md:items-end">
+        <div>
+          <div className="flex items-center gap-3">
+            <span className="grid h-9 w-9 place-items-center rounded-full border border-gold/30 bg-gold/5 font-mono text-sm font-semibold text-gold">
+              TD
+            </span>
+            <div>
+              <p className="font-display text-base font-semibold text-foreground">
+                Trishna Das
+              </p>
+              <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-foreground/40">
+                {profile.tagline}
+              </p>
+            </div>
           </div>
         </div>
+
+        <nav className="flex items-center gap-5 text-xs text-foreground/55">
+          <a
+            href={profile.links.github}
+            target="_blank"
+            rel="noopener"
+            className="transition-colors hover:text-gold"
+          >
+            GitHub
+          </a>
+          <a
+            href={profile.links.linkedin}
+            target="_blank"
+            rel="noopener"
+            className="transition-colors hover:text-gold"
+          >
+            LinkedIn
+          </a>
+          <a
+            href={`mailto:${profile.email}`}
+            className="transition-colors hover:text-gold"
+          >
+            Email
+          </a>
+          <a
+            href={profile.links.transcriber}
+            className="transition-colors hover:text-gold"
+          >
+            /transcriber
+          </a>
+        </nav>
+
+        <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-foreground/35">
+          © {year} · Bhubaneswar
+        </p>
       </div>
     </footer>
   );
-};
-
-export default Footer;
+}
