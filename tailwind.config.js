@@ -37,23 +37,28 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        gold: {
-          DEFAULT: "#c9a96e",
-          light: "#d4b275",
-          dark: "#a88c52",
+        // Premium FinTech / Data-Viz palette.
+        // Graphite base = #121417, Mint accent = #00E676. No gold, no navy.
+        graphite: {
+          950: "#0a0c0f",
+          900: "#121417", // spec base background
+          800: "#1a1d22",
+          700: "#232830",
+          600: "#2e333d",
         },
-        navy: {
-          950: "#04060c",
-          900: "#070b15",
-          800: "#0a0f1c",
-          700: "#0e1525",
-          600: "#141c30",
+        mint: {
+          DEFAULT: "#00E676",
+          500: "#00E676",
+          400: "#4ce492",
+          300: "#80efb4",
+          600: "#00b85c",
+          glow: "rgba(0, 230, 118, 0.25)",
         },
       },
       fontFamily: {
         sans: ["Inter", "Inter Variable", ...fontFamily.sans],
         display: ["Inter", "Inter Variable", ...fontFamily.sans],
-        mono: ["JetBrains Mono", ...fontFamily.mono],
+        mono: ["Roboto Mono", "JetBrains Mono", ...fontFamily.mono],
       },
       letterSpacing: {
         tightest: "-0.04em",
@@ -72,24 +77,26 @@ export default {
           "0%": { opacity: "0" },
           "100%": { opacity: "1" },
         },
-        "shimmer": {
-          "0%": { backgroundPosition: "200% 0" },
-          "100%": { backgroundPosition: "-200% 0" },
+        "scan-line": {
+          "0%": { backgroundPosition: "0 0" },
+          "100%": { backgroundPosition: "0 8px" },
         },
         "pulse-glow": {
-          "0%, 100%": { boxShadow: "0 0 0 0 rgba(201, 169, 110, 0.4)" },
-          "50%": { boxShadow: "0 0 0 12px rgba(201, 169, 110, 0)" },
+          "0%, 100%": { boxShadow: "0 0 0 0 rgba(0,230,118,0.4)" },
+          "50%": { boxShadow: "0 0 0 12px rgba(0,230,118,0)" },
         },
       },
       animation: {
         "fade-up": "fade-up 700ms cubic-bezier(0.16, 1, 0.3, 1) forwards",
         "fade-in": "fade-in 800ms ease-out forwards",
-        "shimmer": "shimmer 4s linear infinite",
+        "scan-line": "scan-line 8s linear infinite",
         "pulse-glow": "pulse-glow 2.4s ease-in-out infinite",
       },
       backgroundImage: {
-        "grid-gold":
-          "linear-gradient(to right, rgba(201,169,110,0.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(201,169,110,0.06) 1px, transparent 1px)",
+        "grid-mint":
+          "linear-gradient(to right, rgba(0,230,118,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(0,230,118,0.05) 1px, transparent 1px)",
+        "noise":
+          "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/></svg>\")",
       },
     },
   },
