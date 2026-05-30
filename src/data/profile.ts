@@ -1,30 +1,33 @@
-// Single source of truth for resume / portfolio content.
-// Mirrors the canonical resume; update here and every section picks it up.
+// Single source of truth - parsed from the latest resume PDF.
+// Update here, every section picks it up.
 
 export const profile = {
   name: "Trishna Das",
-  tagline: "Full-Stack · AI Systems Engineer",
-  headline:
-    "Building scalable systems where backend, AI, and product meet - from regulated finance to live consumer apps.",
-  location: "Bhubaneswar, India",
+  tagline: "Full Stack Software Engineer | AI & Automation Engineer",
+  // Verbatim professional summary from the resume - no invented copy.
+  summary:
+    "Results-oriented Software Engineer with a track record of delivering production-ready features across multiple industry internships. Highly adaptable and collaborative, I specialize in building robust backend architectures and automated systems that drive immediate, measurable technical impact from day one.",
+  location: "Mumbai, India",
+  relocate: "Open to Relocate",
   email: "trishnadas7897@gmail.com",
   phone: "+91 7439523511",
   links: {
     github: "https://github.com/trishnadas7897",
     linkedin: "https://linkedin.com/in/trishnadas7897",
-    resume: "/resume.pdf",
+    resume: "/resume/",
     transcriber: "/transcriber/",
   },
+  // Quantified, drawn from the resume bullets.
   metrics: [
-    { value: "5+", label: "internships across full-stack, cloud, AI" },
-    { value: "8", label: "engineers led on a 3-product live stack" },
-    { value: "35%", label: "load-time reduction shipped at OPM" },
-    { value: "99.7%", label: "API uptime on Ridlin microservices" },
+    { value: "5", label: "industry internships" },
+    { value: "8", label: "engineers led at OPM" },
+    { value: "3", label: "live products shipped (OPM)" },
+    { value: "98%", label: "attendance-app validation accuracy" },
   ],
 } as const;
 
 // ----------------------------------------------------------------------------
-// Experience timeline - most recent first.
+// Experience
 // ----------------------------------------------------------------------------
 
 export type Experience = {
@@ -34,96 +37,75 @@ export type Experience = {
   period: string;
   highlight?: boolean;
   link?: string;
-  summary: string;
   bullets: string[];
   stack: string[];
 };
 
 export const experience: Experience[] = [
   {
-    company: "J.P. Morgan Services India",
-    role: "Software Engineer Intern - CIB Rates Team",
+    company: "JPMorgan Chase & Co.",
+    role: "Software Engineer Intern - Rates Tech, CIB",
     location: "Mumbai, India",
-    period: "May 2026 – Jul 2026",
+    period: "May 2026 - Jul 2026",
     highlight: true,
     link: "https://www.jpmorgan.com/",
-    summary:
-      "Software Engineer Program internship within Corporate & Investment Banking, secured via the Code for Good national pathway.",
     bullets: [
-      "Contributing to engineering and reliability workflows on scalable backend systems for high-volume fixed-income trading infrastructure.",
-      "Working alongside senior engineers in a regulated financial environment under JPMC's Code of Conduct, Personal Account Dealing Policy, and enterprise-grade security standards.",
-      "Selected through a highly competitive national programme - Top 6 nationally at JP Morgan Code for Good 2025.",
+      "Selected through a competitive national pipeline (DSA + HireVue) for the Software Engineer Program.",
+      "Building email-automation systems in Rates Tech under Corporate & Investment Banking to track and flag process delays across production workflows.",
+      "Operating under enterprise security and compliance standards.",
     ],
-    stack: ["Java", "Spring", "Distributed Systems", "Reliability", "Fixed Income"],
+    stack: ["Java", "Email Automation", "Fixed Income", "CIB"],
   },
   {
     company: "OPM Corporation",
-    role: "SDE II - Project Lead",
-    location: "Bhubaneswar, India (Hybrid)",
-    period: "Aug 2025 – Dec 2025",
-    summary:
-      "Led a cross-functional team of 8 across 3 live products - MyFojo (food delivery), Ridlin (ride-hailing), and PARIBHASHA (NLP multilingual platform).",
+    role: "Software Development Engineer II (Project Lead)",
+    location: "Bhubaneswar, India",
+    period: "Aug 2025 - Dec 2025",
     bullets: [
-      "Owned sprint planning, architecture, and deployments across three production stacks.",
-      "Re-engineered Node.js APIs and restructured MongoDB schemas on MyFojo - cut app load time by 35 % across high-traffic endpoints.",
-      "Refactored Ridlin's Node.js microservices to 99.7 % API uptime; built a WhatsApp-Commerce ordering system integrating Razorpay + Pet Pooja POS for automated multi-restaurant onboarding.",
-      "Streamlined CI/CD pipelines and added automated regression testing across multiple deployment environments.",
+      "Led architecture and development across three live products while coordinating an 8-engineer team.",
+      "Led backend development for Ridlin (React, Flask, AWS).",
+      "Built and enhanced features for MyFojo (React Native, Django, Azure).",
+      "Collaborated with stakeholders on Paribhaasha's tech stack and AWS infrastructure.",
     ],
-    stack: [
-      "Node.js",
-      "Express",
-      "MongoDB",
-      "Razorpay",
-      "WhatsApp Commerce",
-      "CI/CD",
-      "Team Leadership",
-    ],
+    stack: ["React", "Flask", "AWS", "React Native", "Django", "Azure"],
   },
   {
     company: "WNS Global Services",
-    role: "EU Analytics Intern - Full-Stack",
-    location: "Bengaluru, India (Remote)",
-    period: "May 2025 – Aug 2025",
-    summary:
-      "Built a dual-portal healthcare web app and an agentic AI task-assignment platform for a US insurance client.",
+    role: "EU Analytics Intern (Full Stack)",
+    location: "Pune, India",
+    period: "May 2025 - Aug 2025",
     bullets: [
-      "Developed a dual-portal healthcare web app (Member & Provider) using Flask + Angular + MongoDB, secured with JWT and aligned to HIPAA-compliant architecture standards.",
-      "Integrated LangChain + OpenAI to automate prior-authorization and claims-validation workflows - 35 % lower processing latency, 80 % less manual task management.",
-      "Designed and shipped Agent Task Tracker, an agentic-AI task-assignment platform with REST APIs for creation, real-time tracking, role-based access, and reporting across distributed teams.",
+      "Completed a full-stack engineering training programme focused on Flask, Angular, and MongoDB.",
+      "Hands-on with JWT authentication, REST API development, LangChain-based LLM integration, and agentic AI workflows.",
     ],
-    stack: ["Flask", "Angular", "MongoDB", "LangChain", "OpenAI", "JWT", "HIPAA"],
+    stack: ["Flask", "Angular", "MongoDB", "JWT", "LangChain", "Agentic AI"],
   },
   {
-    company: "Inovaare Corporation",
-    role: "Cloud Platform & Product Dev Intern",
-    location: "Bhubaneswar, India (On-site)",
-    period: "Jun 2025 – Jul 2025",
-    summary:
-      "Automated regulated-document processing pipelines for 200+ healthcare facilities.",
+    company: "Inovaare Clouds Solutions Pvt. Ltd.",
+    role: "Cloud Platform & Product Development Intern",
+    location: "Bhubaneswar, India",
+    period: "May 2025 - Jul 2025",
     bullets: [
-      "Built OCR + AWS Lambda pipelines - 85 % improvement in extraction accuracy across 200+ healthcare facilities.",
-      "Built KPI compliance dashboards tracking 15+ metrics on AWS S3 with role-aware drill-downs.",
+      "Contributed to an OCR pipeline that extracts and stores medical prescriptions in AWS S3 via Lambda.",
+      "Developed a centralised prior-authorisation automation platform and KPI dashboards for healthcare workflows.",
     ],
-    stack: ["AWS Lambda", "S3", "OCR", "Python", "Compliance"],
+    stack: ["AWS Lambda", "S3", "OCR", "Python", "Healthcare Compliance"],
   },
   {
     company: "Codecis AI",
     role: "Backend Developer Intern",
-    location: "San Francisco, USA (Remote)",
-    period: "Jan 2025 – Mar 2025",
-    summary:
-      "Engineered a Flask-Docker CRM backend processing 1 000+ daily transactions for Western Capital Mortgage.",
+    location: "San Francisco, United States",
+    period: "Jan 2025 - Mar 2025",
     bullets: [
-      "Built a Flask + Docker CRM backend handling 1 000+ daily transactions - 40 % latency reduction.",
-      "Designed REST APIs for mortgage analytics dashboards used by 100+ employees.",
-      "Deployed containerised apps on AWS + Azure for improved reliability and deployment scalability.",
+      "Built an ERP-based employee management dashboard.",
+      "Built a centralised social-media CRM supporting ad-campaign tracking and multi-platform automation using Flask, MongoDB, and AWS.",
     ],
-    stack: ["Flask", "Docker", "AWS", "Azure", "REST", "PostgreSQL"],
+    stack: ["Flask", "MongoDB", "AWS", "ERP", "Social CRM"],
   },
 ];
 
 // ----------------------------------------------------------------------------
-// Projects - featured first.
+// Projects
 // ----------------------------------------------------------------------------
 
 export type Project = {
@@ -142,66 +124,65 @@ export const projects: Project[] = [
   {
     slug: "transcriber",
     name: "Hinglish Live Transcription",
-    tagline: "Real-time Hindi + English transcription on Vercel + Groq Whisper",
+    tagline: "Real-time Hindi + English speech-to-text",
     featured: true,
     description:
-      "A live demo that listens to your mic, ships 3-second WAV chunks to Groq's Whisper Large v3 Turbo, and renders the transcript with smooth word-by-word reveals. Built as the public face of a larger Hinglish ASR research project.",
+      "End-to-end live ASR system: a static frontend on Vercel streams mic audio over a WebSocket to a Node server on Render, which forwards 5-second segments to Groq's Whisper Large v3 with language=hi + a Hinglish prompt, runs server-side Devanagari -> Roman post-processing, and ships clean Hinglish back with word-by-word reveals.",
     liveUrl: "https://transcriber.cyrussaas.com/",
     repoUrl: "https://github.com/trishnadas7897/transcriber/tree/demo",
-    stack: ["Vercel", "Node 20", "Groq Whisper", "Web Audio API", "Vanilla JS", "Three.js-grade UI"],
+    stack: ["Node 20", "ws", "Groq Whisper", "Web Audio API", "Render", "Vercel"],
     bullets: [
-      "HTTP-POST architecture (no WebSockets) - works on Vercel Node serverless out of the box.",
-      "Per-IP rate limiting, hallucination blocklist for known Whisper artefacts, 60-second session cap.",
-      "Frosted-glass UI with a live canvas waveform, gradient mic button, animated session timer.",
-      "Sister branch (`develop`) is a full production architecture: multi-tenant Postgres + RLS, Prometheus, GitHub Actions CI/CD, on-call runbooks.",
+      "Three-layer silence gate: client RMS, server segment-RMS, hallucination filter on output.",
+      "Server-side Hunterian romanisation so Hindi reads as clean Latin (`majaa aataa hai`) and embedded English passes through untouched.",
+      "Production-grade sister branch (develop): multi-tenant Postgres + RLS, Prometheus, GitHub Actions CI/CD, on-call runbooks.",
     ],
   },
   {
     slug: "agent-task-tracker",
     name: "Agent Task Tracker",
-    tagline: "Agentic AI task-assignment platform",
+    tagline: "AI-powered task assignment tool",
     description:
-      "REST-API platform that assigns, tracks, and reports on tasks across distributed teams using an agentic-AI scheduler. Built at WNS to retire 80 % of manual task-management overhead.",
+      "Agentic AI task-management system built at WNS using Flask and SQLite with REST APIs for automated task assignment, real-time tracking, and workflow optimisation across distributed teams.",
     repoUrl: "https://github.com/trishnadas7897",
-    stack: ["Flask", "SQLite", "LangChain", "OpenAI", "REST"],
+    stack: ["Flask", "SQLite", "LangChain", "REST APIs"],
     bullets: [
-      "Role-based access control with audit trail across creation, assignment, and completion.",
-      "Real-time task progress tracking and reporting for distributed teams.",
-      "Automated 80 % of manual task-management overhead the team faced pre-launch.",
+      "Automated task assignment across distributed teams.",
+      "Real-time tracking with role-based access.",
+      "Workflow optimisation patterns retired 80 % of manual task-management overhead.",
     ],
   },
   {
     slug: "attendance-app",
     name: "Attendance Management App",
-    tagline: "Flutter + Flask attendance with QR + face recognition",
+    tagline: "QR + face-based verification system",
     description:
-      "Full-stack attendance platform combining QR scanning and facial recognition with encrypted MongoDB storage and role-based authentication.",
+      "Full-stack attendance platform built with Flutter and Flask: QR scanning, facial recognition, encrypted MongoDB storage, and role-based authentication. Achieves 98 % attendance validation accuracy.",
     repoUrl: "https://github.com/trishnadas7897",
     stack: ["Flutter", "Flask", "MongoDB", "OpenCV", "JWT"],
     bullets: [
       "98 % validation accuracy across mixed QR + facial-recognition flows.",
       "Encrypted-at-rest MongoDB with role-aware endpoints for students, faculty, and admins.",
-      "Built end-to-end (mobile, backend, recognition pipeline) in a single sprint.",
+      "End-to-end ownership: mobile, backend, and recognition pipeline.",
     ],
   },
   {
     slug: "adversarial-ai-detector",
-    name: "Adversarial AI Image Detector",
-    tagline: "100k-image synthetic-media detection pipeline",
+    name: "Adversarial AI Image Detection Pipeline",
+    tagline: "CNN classifier for real vs AI-generated imagery",
     description:
-      "PyTorch + NumPy + OpenCV pipeline that classifies AI-generated images (Stable Diffusion, Midjourney, etc.) across a 100 000-image dataset. Built for the IIT Bhubaneswar ML Hackathon 2025.",
+      "CNN-based real/fake classifier trained on 100k+ images with adversarial-noise resilience. Built for the IIT Bhubaneswar ML Hackathon 2025.",
     repoUrl: "https://github.com/trishnadas7897",
     stack: ["PyTorch", "NumPy", "OpenCV", "Adversarial ML"],
     bullets: [
-      "Designed for precision + recall + F1 across diverse synthetic-media generators.",
-      "Trained on a curated 100 k-image dataset spanning multiple diffusion models.",
-      "Built end-to-end in 36 hours at the IIT Bhubaneswar ML Hackathon.",
+      "Trained on a 100 k+ image dataset across multiple diffusion generators.",
+      "Adversarial-noise-resilient architecture - precision/recall/F1 tuned for synthetic-media drift.",
+      "Built in 36 hours at the IIT Bhubaneswar ML Hackathon.",
     ],
   },
 ];
 
 // ----------------------------------------------------------------------------
-// Skills - grouped for the visual grid.
+// Skills - parsed verbatim from the latest resume's SKILLS block.
 // ----------------------------------------------------------------------------
 
 export type SkillGroup = {
@@ -211,96 +192,80 @@ export type SkillGroup = {
 
 export const skills: SkillGroup[] = [
   {
-    category: "Languages",
-    items: ["Python", "C++", "Java", "JavaScript", "TypeScript", "Dart", "SQL"],
+    category: "Programming Languages",
+    items: ["Python", "Java", "JavaScript", "TypeScript", "C/C++ STL", "Dart", "SQL"],
   },
   {
-    category: "Frameworks",
-    items: [
-      "Node.js",
-      "Express",
-      "React",
-      "Angular",
-      "Flask",
-      "FastAPI",
-      "Django",
-      "Flutter",
-    ],
-  },
-  {
-    category: "Cloud & DevOps",
-    items: [
-      "AWS (Lambda, S3)",
-      "Azure",
-      "GCP",
-      "Docker",
-      "Kubernetes",
-      "CI/CD",
-      "Jenkins",
-      "Git",
-    ],
+    category: "Frameworks & Libraries",
+    items: ["Flask", "Django", "FastAPI", "Express.js", "Next.js", "Angular", "Flutter", "React.js"],
   },
   {
     category: "Databases",
-    items: ["MongoDB", "PostgreSQL", "MySQL", "SQLite", "SQLAlchemy"],
+    items: ["MongoDB", "PostgreSQL", "MySQL", "SQLite", "Redis"],
   },
   {
-    category: "AI / ML",
-    items: ["LangChain", "OpenAI APIs", "Groq", "PyTorch", "NumPy", "OpenCV"],
+    category: "Developer Tools",
+    items: ["Git", "GitHub", "Docker", "Postman"],
   },
   {
-    category: "Analytics & BI",
-    items: ["Power BI", "Tableau", "Matplotlib", "Data Visualisation"],
+    category: "Cloud & DevOps",
+    items: ["AWS", "Azure", "GCP", "Firebase", "Jenkins", "Kubernetes", "GitHub Actions"],
+  },
+  {
+    category: "Gen AI & LLMs",
+    items: ["LangChain", "LangGraph (Agentic AI)", "RAG", "LLM Fine-tuning", "MCP", "Hugging Face"],
+  },
+  {
+    category: "Machine Learning",
+    items: ["PyTorch", "TensorFlow", "Pandas", "NumPy", "Computer Vision (OpenCV)", "NLP"],
   },
 ];
 
 // ----------------------------------------------------------------------------
-// Achievements - for the standalone awards strip.
+// Certifications
+// ----------------------------------------------------------------------------
+
+export const certifications = [
+  { name: "Data Analytics Summer Internship", issuer: "IBM SkillsBuild" },
+  { name: "Technology Job Simulation", issuer: "Deloitte Australia Forage" },
+  { name: "Crash Course on Python", issuer: "Google Coursera" },
+];
+
+// ----------------------------------------------------------------------------
+// Awards - latest resume's AWARDS & ACHIEVEMENTS block.
 // ----------------------------------------------------------------------------
 
 export type Achievement = {
   title: string;
   issuer: string;
   year?: string;
-  badge?: "gold" | "silver" | "blue";
+  badge?: "primary" | "secondary";
 };
 
 export const achievements: Achievement[] = [
   {
-    title: "Runner-up - Code for Good 2025",
-    issuer: "J.P. Morgan · Top 6 nationally",
+    title: "Runner-up - Code for Good 2025 Hackathon",
+    issuer: "J.P. Morgan Services India Private Limited",
     year: "2025",
-    badge: "gold",
+    badge: "primary",
   },
   {
-    title: "Winner - Shark Tank 2.0",
-    issuer: "Sambalpur University",
-    year: "2024",
-    badge: "gold",
+    title: "Participant - ML Hackathon 2025",
+    issuer: "IIT Bhubaneswar",
+    year: "2025",
+    badge: "secondary",
   },
   {
-    title: "Winner - Ideathon 2024",
-    issuer: "E-Cell VSSUT",
-    year: "2024",
-    badge: "gold",
+    title: "Participant - C-ATHON Coding Competition",
+    issuer: "iServeU",
+    year: "2025",
+    badge: "secondary",
   },
   {
     title: "Winner - Maze Hunt 2024",
     issuer: "Robotics Club, VSSUT",
     year: "2024",
-    badge: "silver",
-  },
-  {
-    title: "Top 60 - e-Yantra Robotics",
-    issuer: "IIT Bombay",
-    year: "2024",
-    badge: "blue",
-  },
-  {
-    title: "Presenter - Startup Odisha 2.0",
-    issuer: "Government of Odisha",
-    year: "2024",
-    badge: "blue",
+    badge: "primary",
   },
 ];
 
@@ -312,23 +277,23 @@ export const education = [
   {
     school: "Veer Surendra Sai University of Technology (VSSUT)",
     degree: "B.Tech, Computer Science & Engineering",
-    grade: "CGPA 8.67 (up to 4th sem) · SGPA 9.16 (1st sem)",
-    period: "2023 – 2027",
-    location: "Burla, Odisha",
+    grade: "SGPA 9.16 (1st sem) - CGPA 8.67 (upto 4th sem)",
+    period: "Jan 2023 - Present",
+    location: "Burla, India",
   },
   {
-    school: "Delhi Public School, Ruby Park",
-    degree: "Senior Secondary (XII) - CBSE Science",
-    grade: "93.60 %",
-    period: "2022 – 2023",
-    location: "Kolkata",
+    school: "Delhi Public School Ruby Park",
+    degree: "Senior Secondary (XII) - CBSE Science (PCM)",
+    grade: "",
+    period: "",
+    location: "Kolkata, India",
   },
   {
     school: "Mahadevi Birla Shishu Vihar",
     degree: "Secondary (X) - ICSE",
     grade: "95.10 %",
-    period: "2020 – 2021",
-    location: "Kolkata",
+    period: "",
+    location: "Kolkata, India",
   },
 ];
 
@@ -337,6 +302,6 @@ export const sectionsNav = [
   { id: "experience", label: "Experience" },
   { id: "projects", label: "Projects" },
   { id: "skills", label: "Skills" },
-  { id: "achievements", label: "Achievements" },
+  { id: "achievements", label: "Awards" },
   { id: "contact", label: "Contact" },
 ];
