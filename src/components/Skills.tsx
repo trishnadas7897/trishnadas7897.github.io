@@ -7,17 +7,25 @@ import {
   Database,
   Sparkles,
   LineChart,
+  Wrench,
 } from "lucide-react";
 
+// Spec: "Display skills as clean data tags, interactive nodes, or a
+// flowing marquee." Picking clean data tags - they read as a checklist
+// of capabilities, scan quickly, and don't lie with progress bars.
+
 const iconFor = (cat: string) => {
-  if (cat === "Languages") return Code2;
-  if (cat === "Frameworks") return Server;
-  if (cat === "Cloud & DevOps") return Cloud;
-  if (cat === "Databases") return Database;
-  if (cat === "AI / ML") return Sparkles;
-  if (cat === "Analytics & BI") return LineChart;
+  if (cat.startsWith("Programming")) return Code2;
+  if (cat.startsWith("Frameworks")) return Server;
+  if (cat.startsWith("Databases")) return Database;
+  if (cat.startsWith("Developer")) return Wrench;
+  if (cat.startsWith("Cloud")) return Cloud;
+  if (cat.startsWith("Gen AI")) return Sparkles;
+  if (cat.startsWith("Machine")) return LineChart;
   return Code2;
 };
+
+const ease = [0.16, 1, 0.3, 1] as const;
 
 export default function Skills() {
   return (
@@ -27,15 +35,15 @@ export default function Skills() {
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.7, ease }}
           className="mb-14 max-w-3xl"
         >
           <div className="eyebrow">04 - Stack</div>
           <h2 className="section-title">
-            Tools <span className="text-gradient-gold">I reach for first</span>.
+            Tools <span className="text-gradient-mint">I reach for first</span>.
           </h2>
           <p className="mt-5 text-base text-foreground/65 md:text-lg">
-            Grouped by where they show up in production - not by what's trendy.
+            Grouped by where they show up in production - not by what's trendy. No progress bars - they would lie.
           </p>
         </motion.div>
 
@@ -50,14 +58,14 @@ export default function Skills() {
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{
                   duration: 0.6,
-                  delay: i * 0.05,
-                  ease: [0.16, 1, 0.3, 1],
+                  delay: i * 0.04,
+                  ease,
                 }}
                 whileHover={{ y: -3 }}
-                className="glass p-6"
+                className="surface p-6"
               >
                 <div className="flex items-center gap-3">
-                  <span className="grid h-10 w-10 place-items-center rounded-xl border border-gold/30 bg-gold/[0.06] text-gold">
+                  <span className="grid h-10 w-10 place-items-center rounded-xl border border-mint/30 bg-mint/[0.06] text-mint">
                     <Icon size={18} strokeWidth={1.6} />
                   </span>
                   <h3 className="font-display text-base font-semibold tracking-tight text-foreground">

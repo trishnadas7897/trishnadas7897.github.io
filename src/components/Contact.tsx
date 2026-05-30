@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { profile } from "@/data/profile";
-import { Mail, MapPin, Linkedin, Github, ArrowUpRight } from "lucide-react";
+import { Mail, MapPin, Linkedin, Github, FileText, ArrowUpRight } from "lucide-react";
 
 const channels = [
   {
@@ -24,11 +24,20 @@ const channels = [
     external: true,
   },
   {
+    icon: FileText,
+    label: "Resume",
+    value: "Open the latest PDF",
+    href: profile.links.resume,
+    external: true,
+  },
+  {
     icon: MapPin,
     label: "Based in",
-    value: profile.location,
+    value: `${profile.location} - ${profile.relocate}`,
   },
 ] as const;
+
+const ease = [0.16, 1, 0.3, 1] as const;
 
 export default function Contact() {
   return (
@@ -38,28 +47,26 @@ export default function Contact() {
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="glass relative overflow-hidden p-10 md:p-16"
+          transition={{ duration: 0.7, ease }}
+          className="surface relative overflow-hidden p-10 md:p-16"
         >
-          {/* Decorative grid */}
-          <div className="pointer-events-none absolute inset-0 grid-overlay opacity-40" />
+          <div className="pointer-events-none absolute inset-0 grid-overlay opacity-30" />
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(0,230,118,0.10),transparent_55%)]" />
 
           <div className="relative grid items-end gap-10 lg:grid-cols-[1.2fr_1fr]">
             <div>
               <div className="eyebrow">06 - Contact</div>
               <h2 className="font-display text-4xl font-semibold tracking-tightest text-foreground md:text-6xl">
-                Let's build <span className="text-gradient-gold">something serious</span>.
+                Let's build <span className="text-gradient-mint">something serious</span>.
               </h2>
               <p className="mt-5 max-w-xl text-base text-foreground/65 md:text-lg">
-                Open to full-time roles in 2027, summer 2026 collaborations, and
-                interesting side projects in AI systems / fintech / regulated
-                infrastructure. Always replying within a day.
+                Open to full-time roles in 2027, summer 2026 collaborations, and interesting side projects in AI systems, fintech, or regulated infrastructure. Always replying within a day.
               </p>
 
               <motion.a
                 whileHover={{ y: -1 }}
                 href={`mailto:${profile.email}`}
-                className="mt-8 inline-flex items-center gap-2 rounded-full bg-gold px-6 py-3 text-sm font-semibold tracking-tight text-navy-950 shadow-[0_10px_36px_rgba(201,169,110,0.3)]"
+                className="btn-mint mt-8"
               >
                 {profile.email}
                 <ArrowUpRight size={16} />
@@ -69,9 +76,9 @@ export default function Contact() {
             <ul className="space-y-3">
               {channels.map(({ icon: Icon, label, value, href, external }) => {
                 const inner = (
-                  <span className="flex items-center justify-between gap-4 rounded-2xl border border-white/[0.06] bg-white/[0.02] px-5 py-4 transition-colors hover:border-gold/30 hover:bg-white/[0.04]">
+                  <span className="flex items-center justify-between gap-4 rounded-2xl border border-white/[0.06] bg-white/[0.02] px-5 py-4 transition-colors hover:border-mint/30 hover:bg-white/[0.04]">
                     <span className="flex items-center gap-4">
-                      <span className="grid h-9 w-9 place-items-center rounded-xl border border-gold/30 bg-gold/[0.06] text-gold">
+                      <span className="grid h-9 w-9 place-items-center rounded-xl border border-mint/30 bg-mint/[0.06] text-mint">
                         <Icon size={16} strokeWidth={1.6} />
                       </span>
                       <span>

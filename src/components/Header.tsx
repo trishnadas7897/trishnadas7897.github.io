@@ -18,13 +18,13 @@ export default function Header() {
       className={[
         "fixed inset-x-0 top-0 z-50 transition-all duration-300",
         scrolled
-          ? "border-b border-white/[0.06] bg-background/70 backdrop-blur-xl"
+          ? "border-b border-white/[0.06] bg-graphite-900/70 backdrop-blur-xl"
           : "bg-transparent",
       ].join(" ")}
     >
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6 lg:px-12">
         <a href="#top" className="group flex items-center gap-3" aria-label="Home">
-          <span className="grid h-9 w-9 place-items-center rounded-full border border-gold/30 bg-gold/5 font-mono text-sm font-semibold text-gold">
+          <span className="grid h-9 w-9 place-items-center rounded-full border border-mint/30 bg-mint/[0.06] font-mono text-sm font-semibold text-mint">
             TD
           </span>
           <span className="hidden font-display text-sm font-medium tracking-tight text-foreground/90 transition-colors group-hover:text-foreground md:block">
@@ -37,7 +37,7 @@ export default function Header() {
             <a
               key={s.id}
               href={`#${s.id}`}
-              className="rounded-full px-3 py-1.5 text-sm text-foreground/70 transition-colors hover:bg-white/[0.04] hover:text-foreground"
+              className="rounded-full px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.18em] text-foreground/65 transition-colors hover:bg-white/[0.04] hover:text-foreground"
             >
               {s.label}
             </a>
@@ -46,18 +46,18 @@ export default function Header() {
 
         <div className="flex items-center gap-2">
           <a
-            href={profile.links.github}
+            href={profile.links.resume}
             target="_blank"
             rel="noopener"
-            className="hidden rounded-full border border-white/[0.06] bg-white/[0.02] px-3 py-1.5 text-xs font-medium text-foreground/80 transition-colors hover:border-gold/30 hover:text-foreground md:inline-flex"
+            className="hidden rounded-full border border-white/[0.06] bg-white/[0.02] px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.18em] text-foreground/80 transition-colors hover:border-mint/30 hover:text-foreground md:inline-flex"
           >
-            GitHub
+            Resume
           </a>
           <motion.a
             whileHover={{ y: -1 }}
             whileTap={{ y: 0 }}
             href={`mailto:${profile.email}`}
-            className="inline-flex items-center gap-2 rounded-full bg-gold px-4 py-1.5 text-xs font-semibold tracking-tight text-navy-950 shadow-[0_8px_30px_rgba(201,169,110,0.25)] transition-shadow hover:shadow-[0_10px_36px_rgba(201,169,110,0.45)]"
+            className="inline-flex items-center gap-2 rounded-full bg-mint px-4 py-1.5 text-xs font-semibold tracking-tight text-graphite-950 shadow-[0_8px_30px_rgba(0,230,118,0.25)] transition-shadow hover:shadow-[0_10px_36px_rgba(0,230,118,0.45)]"
           >
             Get in touch
           </motion.a>
@@ -76,19 +76,30 @@ export default function Header() {
       </div>
 
       {open && (
-        <nav className="border-t border-white/[0.06] bg-background/95 backdrop-blur-xl md:hidden">
+        <nav className="border-t border-white/[0.06] bg-graphite-900/95 backdrop-blur-xl md:hidden">
           <ul className="mx-auto max-w-6xl px-6 py-3">
             {sectionsNav.map((s) => (
               <li key={s.id}>
                 <a
                   href={`#${s.id}`}
                   onClick={() => setOpen(false)}
-                  className="block rounded-lg px-3 py-2 text-sm text-foreground/80 hover:bg-white/[0.04]"
+                  className="block rounded-lg px-3 py-2 font-mono text-xs uppercase tracking-[0.18em] text-foreground/80 hover:bg-white/[0.04]"
                 >
                   {s.label}
                 </a>
               </li>
             ))}
+            <li>
+              <a
+                href={profile.links.resume}
+                target="_blank"
+                rel="noopener"
+                onClick={() => setOpen(false)}
+                className="block rounded-lg px-3 py-2 font-mono text-xs uppercase tracking-[0.18em] text-mint hover:bg-white/[0.04]"
+              >
+                Resume
+              </a>
+            </li>
           </ul>
         </nav>
       )}
